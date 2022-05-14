@@ -16,26 +16,16 @@ class DynamicArray(object):
         return str(self._array[:self._size])
 
     def __iter__(self):
-        """ iteration """
         array = from_list(to_list(self))
         return array
 
     def __next__(self):
-        """ iteration, get next element """
         if self._start <= self._size - 1:
             res = self._array[self._start]
             self._start += 1
             return res
         else:
             raise StopIteration
-
-    # def __eq__(self, array):
-    #     if self._size != array._size:
-    #         return False
-    #     for a, b in zip(self, array):
-    #         if a != b:
-    #             return False
-    #     return True
 
     def __eq__(self, other):
         if not isinstance(other, DynamicArray):
@@ -58,7 +48,6 @@ class DynamicArray(object):
 
 
     def _add(self, value):
-        """ Private methods, add obj to the end """
         if self._size == self._capacity:
             self._resize(self._grow_factor * self._capacity)
         self._array[self._size] = value
