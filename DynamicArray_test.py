@@ -86,8 +86,8 @@ class DynamicArrayTest(unittest.TestCase):
         ]
         for e in test_data:
             array = from_list(e)
-            self.assertEqual(reduce(array, lambda st, _: st + 1, 0), l
-                             ength(array))
+            self.assertEqual(reduce(array, lambda st, _: st + 1, 0),
+                             length(array))
 
     def test_empty(self):
         array = DynamicArray()
