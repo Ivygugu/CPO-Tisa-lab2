@@ -61,7 +61,7 @@ class DynamicArray(object):
         self._array = B
         self._capacity = c
 
-        
+
 def cons(array, value):
     if type(array) is not DynamicArray:
         new_array = DynamicArray()
@@ -125,7 +125,7 @@ def remove(array, idx):
             return new_array
     raise AssertionError('value not found')
 
-    
+
 def member(array, value):
     """ Gets array elements based on index """
     for i in range(array._size):
