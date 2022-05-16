@@ -62,11 +62,11 @@ class DynamicArrayTest(unittest.TestCase):
     def test_filter(self):
         x = [1, 2, 3, 4, 5]
         array = from_list(x)
-        self.assertEqual([2, 4],  filter(array, lambda e: e % 2 == 0))
+        self.assertEqual([2, 4], filter(array, lambda e: e % 2 == 0))
 
     def test_map(self):
         array = DynamicArray()
-        self.assertEqual(to_list(map(array,str)), [])
+        self.assertEqual(to_list(map(array, str)), [])
         array = from_list([1, 2, 3])
         self.assertEqual(to_list(map(array, str)), ["1", "2", "3"])
         self.assertEqual(to_list(map(array, lambda x: x + 1)), [2, 3, 4])
@@ -86,8 +86,8 @@ class DynamicArrayTest(unittest.TestCase):
         ]
         for e in test_data:
             array = from_list(e)
-            self.assertEqual(reduce(array, lambda st, _: st + 1, 0), l
-                             ength(array))
+            self.assertEqual(reduce(array, lambda st, _: st + 1, 0),
+                             length(array))
 
     def test_empty(self):
         array = DynamicArray()
