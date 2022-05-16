@@ -1,8 +1,9 @@
 import unittest
 from hypothesis import given
 import hypothesis.strategies as st
-from DynamicArray import cons, to_list, length, remove, member,empty,iterator,find
-from DynamicArray import reverse, from_list, concat, filter, map, reduce, insert
+from DynamicArray import cons, to_list, length, remove, member
+from DynamicArray import empty, iterator, find, reverse
+from DynamicArray import from_list, concat, filter, map, reduce, insert
 from DynamicArray import DynamicArray
 
 
@@ -85,7 +86,8 @@ class DynamicArrayTest(unittest.TestCase):
         ]
         for e in test_data:
             array = from_list(e)
-            self.assertEqual(reduce(array, lambda st, _: st + 1, 0), length(array))
+            self.assertEqual(reduce(array, lambda st, _: st + 1, 0), l
+                             ength(array))
 
     def test_empty(self):
         array = DynamicArray()
@@ -118,7 +120,6 @@ class DynamicArrayTest(unittest.TestCase):
         empty = DynamicArray()
         self.assertEqual(concat(empty, a), a)
         self.assertEqual(concat(a, empty), a)
-
 
     @given(lst1=st.lists(st.integers()),
            lst2=st.lists(st.integers()),
