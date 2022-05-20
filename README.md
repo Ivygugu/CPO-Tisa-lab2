@@ -1,10 +1,6 @@
-# Tisa-lab2-variant1
+# Tisa-lab2-variant2
 
 This repo is the Lab2 of Computational Process Organization in ITMO, 2022 spring.
-
-## Variant
-
-* 1 - Unrolled linked list
 
 ## Project structure description
 
@@ -58,6 +54,8 @@ This repo is the Lab2 of Computational Process Organization in ITMO, 2022 spring
 
 ## Changelog
 
+* 20.5.2022 - 2
+  * update `README.md`
 * 14.5.2022 - 1
   * update `DynamicArray.py` and `DynamicArray_test.py`
 * 11.5.2022 - 0
@@ -67,13 +65,25 @@ This repo is the Lab2 of Computational Process Organization in ITMO, 2022 spring
 
 ### Compare mutable and immutable implementation
 
-* Mutable data refers to a database structure in which data can be changed.
- Any data changes made simply overwrite and replace the previous record.
- This means that previous iterations of data are lost unless there is
- a system of back-ups and transaction logs that track changes.
+* Mutable Infrastructure
+  * Fix problems more quickly. Rather than needing to create a new
+server from scratch, IT staff gets to know each server on a
+"personal" level, making diagnoses faster.
+  * The infrastructure can more precisely fit the specific needs
+of the applications that are running on the server.
+  * Updates are usually faster and can be adapted to each individual server. 
 
-* Immutable data cannot be changed, meaning that the values inside
- them can't be added, removed, moved or swapped. Instead of changing
- the data structure you make a new version of the data structure
- which is a separate value. Such data structure more relevant for
- multi-thread programming.
+* Immutable Infrastructure
+  * Discrete versioning means tracking and rollbacks are much easier.
+IT department can keep tabs on each new server or virtual machine
+as it is deployed.
+  * Testing is easier to run thanks to the consistency in
+configurations between different servers.
+  * Predictable state since the infrastructure is never modified,
+reducing complexity.
+  * Safe thread code in a multi-threaded environment meaning mutation
+is almost nonexistent.
+  * Supports DevOps and cloud computing including virtualization and
+the high number of interdependent elements.
+  * Eliminates configuration drift, since there are no changes,
+there is no drift.
