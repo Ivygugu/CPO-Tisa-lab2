@@ -69,9 +69,7 @@ This repo is the Lab2 of Computational Process Organization in ITMO, 2022 spring
 
   * Fix problems more quickly.
 
-  * The infrastructure can more precisely fit the specific needs
-
-of the applications that are running on the server.
+  * The infrastructure can more precisely fit the specific needs of the applications that are running on the server.
 
   * Updates are usually faster and can be adapted to each individual server.
 
