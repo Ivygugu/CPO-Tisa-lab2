@@ -66,24 +66,33 @@ This repo is the Lab2 of Computational Process Organization in ITMO, 2022 spring
 ### Compare mutable and immutable implementation
 
 * Mutable Infrastructure
+
   * Fix problems more quickly. Rather than needing to create a new
 server from scratch, IT staff gets to know each server on a
 "personal" level, making diagnoses faster.
+
   * The infrastructure can more precisely fit the specific needs
 of the applications that are running on the server.
-  * Updates are usually faster and can be adapted to each individual server. 
+
+  * Updates are usually faster and can be adapted to each individual server.
 
 * Immutable Infrastructure
+
   * Discrete versioning means tracking and rollbacks are much easier.
 IT department can keep tabs on each new server or virtual machine
 as it is deployed.
+
   * Testing is easier to run thanks to the consistency in
 configurations between different servers.
+
   * Predictable state since the infrastructure is never modified,
 reducing complexity.
+
   * Safe thread code in a multi-threaded environment meaning mutation
 is almost nonexistent.
+
   * Supports DevOps and cloud computing including virtualization and
 the high number of interdependent elements.
+
   * Eliminates configuration drift, since there are no changes,
 there is no drift.
