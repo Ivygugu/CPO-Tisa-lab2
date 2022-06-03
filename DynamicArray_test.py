@@ -133,5 +133,12 @@ class DynamicArrayTest(unittest.TestCase):
         self.assertEqual(concat(a, concat(b, c)),
                          concat(concat(a, b), c))
 
+    @given(a=st.lists(st.integers()))
+    def test_immutability(self, a):
+        lst = from_list(a)
+        cons(123, lst)
+        reverse(lst)
+        self.assertEqual(str(lst), str(a))
+
     if __name__ == '__main__':
         unittest.main()
