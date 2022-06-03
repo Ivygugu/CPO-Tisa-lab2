@@ -57,7 +57,7 @@ class DynamicArray(object):
         B = self._make_array(c)
         for k in range(self._size):
             B[k] = self._array[k]  # type: ignore
-        self._array = B
+        self._array = B  # type: ignore
         self._capacity = c
 
 
