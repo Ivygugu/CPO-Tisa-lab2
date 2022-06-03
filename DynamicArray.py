@@ -24,7 +24,7 @@ class DynamicArray(object):
         if self._start <= self._size - 1:
             res = self._array[self._start]
             self._start += 1
-            return res
+            return res  # type: ignore
         else:
             raise StopIteration
 
@@ -56,7 +56,7 @@ class DynamicArray(object):
     def _resize(self, c) -> None:
         B = self._make_array(c)
         for k in range(self._size):
-            B[k] = self._array[k]
+            B[k] = self._array[k]  # type: ignore
         self._array = B
         self._capacity = c
 
