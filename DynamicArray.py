@@ -155,7 +155,7 @@ def map(self: 'DynamicArray', f: Callable[[Any], Any]) -> 'DynamicArray':
 
 
 def reduce(self: 'DynamicArray', f: Optional[Callable[..., Any]]
-           , initial_state: int) -> int:
+        , initial_state: int) -> int:
     state = initial_state
     for i in range(self._size):
         state = f(state, self._array[i])  # type: ignore
