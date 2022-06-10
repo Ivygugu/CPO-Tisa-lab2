@@ -1,3 +1,4 @@
+import typing
 import unittest
 from hypothesis import given
 import hypothesis.strategies as st
@@ -8,7 +9,7 @@ from DynamicArray import DynamicArray
 
 
 class DynamicArrayTest(unittest.TestCase):
-    def test_api(self):
+    def test_api(self) -> None:
 
         empty = DynamicArray()
         l1 = cons(cons(empty, 1), None)
@@ -46,32 +47,32 @@ class DynamicArrayTest(unittest.TestCase):
             lst.remove(e)
         self.assertEqual(lst, [])
 
-    def test_insert(self):
+    def test_insert(self) -> None:
         x = [1, 2, 3]
         array = from_list(x)
         array2 = insert(array, 1, 4)
         self.assertEqual(to_list(array2), [1, 4, 2, 3])
 
-    def test_find(self):
+    def test_find(self) -> None:
         x = [1, 2, 3, None]
         array = from_list(x)
         self.assertFalse(find(array, lambda x: x == 5))
         self.assertTrue(find(array, lambda x: x is None))
         self.assertTrue(find(array, lambda x: x % 2 == 0))
 
-    def test_filter(self):
+    def test_filter(self) -> None:
         x = [1, 2, 3, 4, 5]
         array = from_list(x)
         self.assertEqual([2, 4], filter(array, lambda e: e % 2 == 0))
 
-    def test_map(self):
+    def test_map(self) -> None:
         array = DynamicArray()
         self.assertEqual(to_list(map(array, str)), [])
         array = from_list([1, 2, 3])
         self.assertEqual(to_list(map(array, str)), ["1", "2", "3"])
         self.assertEqual(to_list(map(array, lambda x: x + 1)), [2, 3, 4])
 
-    def test_reduce(self):
+    def test_reduce(self) -> None:
         array = DynamicArray()
         self.assertEqual(reduce(array, lambda st, e: st + e, 0), 0)
 
@@ -85,17 +86,17 @@ class DynamicArrayTest(unittest.TestCase):
             ['a', 'b']
         ]
         for e in test_data:
-            array = from_list(e)
+            array = from_list(e)  # type: ignore
             self.assertEqual(reduce(array, lambda st, _: st + 1, 0),
                              length(array))
 
-    def test_empty(self):
+    def test_empty(self) -> None:
         array = DynamicArray()
         a = empty(array)
         b = from_list([])
         self.assertEqual(a, b)
 
-    def test_iter(self):
+    def test_iter(self) -> None:
         x = [1, 2, 3]
         array = from_list(x)
         tmp = []
@@ -111,11 +112,11 @@ class DynamicArrayTest(unittest.TestCase):
         self.assertRaises(StopIteration, lambda: next(it))
 
     @given(st.lists(st.integers()))
-    def test_from_list_to_list_equality(self, a):
+    def test_from_list_to_list_equality(self, a: typing.List[int]) -> None:
         self.assertEqual(to_list(from_list(a)), a)
 
     @given(st.lists(st.integers()))
-    def test_monoid_identity(self, lst):
+    def test_monoid_identity(self, lst: typing.List[int]) -> None:
         a = from_list(lst)
         empty = DynamicArray()
         self.assertEqual(concat(empty, a), a)
@@ -124,7 +125,9 @@ class DynamicArrayTest(unittest.TestCase):
     @given(lst1=st.lists(st.integers()),
            lst2=st.lists(st.integers()),
            lst3=st.lists(st.integers()))
-    def test_monoid_associativity(self, lst1, lst2, lst3):
+    def test_monoid_associativity(self, lst1: typing.
+                                  List[int], lst2: typing.
+                                  List[int], lst3: typing.List[int]) -> None:
         a = from_list(lst1)
         b = from_list(lst2)
         c = from_list(lst3)
@@ -134,7 +137,7 @@ class DynamicArrayTest(unittest.TestCase):
                          concat(concat(a, b), c))
 
     @given(a=st.lists(st.integers()))
-    def test_immutability(self, a):
+    def test_immutability(self, a: typing.List[int]) -> None:
         lst = from_list(a)
         cons(123, lst)
         reverse(lst)
