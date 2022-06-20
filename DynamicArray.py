@@ -1,9 +1,10 @@
 import ctypes
 import copy
-import typing
 from typing import Any, List, Callable, Optional, Union
 
 AllType = Union[int, str, None]
+ArrayType = Union[int, 'DynamicArray']
+listType = List[AllType]
 
 
 class DynamicArray(object):
@@ -51,10 +52,10 @@ class DynamicArray(object):
     def _make_array(self, c: int) -> Any:
         return (c * ctypes.py_object)()
 
-    def _add(self, value: Any) -> None:
+    def _add(self, value: AllType) -> None:
         if self._size == self._capacity:
             self._resize(self._grow_factor * self._capacity)
-        self._array[self._size] = value
+        self._array[self._size] = value  # type: ignore
         self._size += 1
 
     def _resize(self, c: int) -> None:
@@ -65,8 +66,8 @@ class DynamicArray(object):
         self._capacity = c
 
 
-def cons(array: Union[int, 'DynamicArray'], value: Any) -> 'DynamicArray':
-    if type(array) is not DynamicArray:
+def cons(array: ArrayType, value: AllType) -> 'DynamicArray':
+    if not isinstance(array, DynamicArray):
         new_array = DynamicArray()
         return cons(new_array, value)
     res = copy.deepcopy(array)
@@ -81,14 +82,14 @@ def length(array: 'DynamicArray') -> int:
         return array._size
 
 
-def insert(self: 'DynamicArray', index: int, value: Any) -> 'DynamicArray':
+def insert(self: 'DynamicArray', index: int, value: AllType) -> 'DynamicArray':
     new_array = copy.deepcopy(self)
 
     if new_array._size == new_array._capacity:
         new_array._resize(new_array._grow_factor * new_array._capacity)
     for i in range(new_array._size - 1, index - 1, -1):
         new_array._array[i + 1] = new_array._array[i]
-    new_array._array[index] = value
+    new_array._array[index] = value  # type: ignore
     new_array._size += 1
     return new_array
 
@@ -96,13 +97,13 @@ def insert(self: 'DynamicArray', index: int, value: Any) -> 'DynamicArray':
 def to_list(array: 'DynamicArray') -> Any:
     if array is None:
         return []
-    res: List[None] = []
+    res: listType = []
     for i in range(array._size):
         res.append(array._array[i])
     return res
 
 
-def from_list(array: Union[typing.List[Any], 'DynamicArray']
+def from_list(array: Union[listType, 'DynamicArray']
               ) -> 'DynamicArray':
     res = DynamicArray()
     for i in array:
@@ -139,8 +140,8 @@ def member(array: 'DynamicArray', value: AllType) -> bool:
     return False
 
 
-def filter(self: 'DynamicArray', f: Callable[[Any], Any]) -> typing.List[Any]:
-    res: List[None] = []
+def filter(self: 'DynamicArray', f: Callable[[Any], Any]) -> listType:
+    res: listType = []
     for i in range(self._size):
         if (f(self._array[i])):
             res.append(self._array[i])
