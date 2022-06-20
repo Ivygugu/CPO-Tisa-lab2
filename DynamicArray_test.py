@@ -6,7 +6,6 @@ from DynamicArray import empty, iterator, find, reverse
 from DynamicArray import from_list, concat, filter, map, reduce, insert
 from DynamicArray import DynamicArray
 from typing import List, Union
-from functools import reduce
 
 AllType = Union[int, str, None]
 ArrayType = Union[int, 'DynamicArray']
